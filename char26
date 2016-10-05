@@ -1,0 +1,65 @@
+class Trie{
+	private TrieNode root;
+	public Trie(){
+		root = new TrieNode();
+	}
+	public void insert(String wd){
+		TrieNode tmp = root;
+		for(int i=0; i<wd.length(); ++i){
+			char c = wd.charAt(i);
+			int idx = c-'a';
+			if(tmp.children[idx]==null){
+				tmp.children[idx] = new TrieNode();
+			}
+			tmp = tmp.children[idx];
+		}
+		tmp.isEnd = true;
+	}
+	public ArrayList<String> getPrefixWords(String prefix){
+		ArrayList<String> res = new ArrayList<>();
+		if(prefix.equals("")) return res;
+		TrieNode node = getNodeOfLastChar(prefix);
+		if(node==null) return res;
+		res = getWordsStartingFromNode(node);
+		for(String i : res){
+			i = prefix + i;
+		}
+		return res;
+	}
+	private TrieNode getNodeOfLastChar(String prefix){
+		TrieNode tmp = root;
+		for(int i=0; i<prefix.length(); ++i){
+			char c = prefix.charAt(i);
+			int idx = c-'a';
+			if(tmp.children[idx]==null){
+				return null;
+			}
+			tmp = tmp.children[idx];
+		}
+		return tmp;
+	}
+	private ArrayList<String> getWordsStartingFromNode(TrieNode node){
+		ArrayList<String> res = new ArrayList<>();
+		String s = "";
+		dfs(node, s, res);
+		return res;
+	}
+	private void dfs(TrieNode node, String s, ArrayList<String> res){
+		if(node == null) return;
+		if(node.isEnd) res.add(s);
+		for(int i=0; i<26; ++i){
+			if(node.children[i]!=null){
+				String t = s + (char)('a'+i);
+				dfs(node.children[i], t, res);
+			}
+		}
+	}
+}
+class TrieNode{
+	public boolean isEnd;
+	public TrieNode[] children;
+	public TrieNode(){
+		isEnd = false;
+		children = new TrieNode[26];
+	};
+}
