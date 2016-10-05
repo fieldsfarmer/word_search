@@ -1,3 +1,52 @@
+# Words with Friends Problem
+
+## Problem Statement
+
+Given the included dictionary file `words.txt` write a program to take a shuffled set of letters and return:
+
+ - what words from the dictionary the user can spell with these letters?
+ - what words begin with these letters as a prefix?
+ - what words end with these letters as a suffix?
+
+You may use any programming language with which you're comfortable.  
+
+Include along with your sourcecode any documentation necessary to compile / run your program.
+ 
+Extra credit for performance optimizations and/or unit tests.
+
+## Example Usage
+
+Assume you're program is called "scrabbler".
+
+To find all the words you can spell with 7 letters "abcdefg" you should be able to type:
+
+    $ scrabbler abcdefg
+    
+And get back a list of words as output.  Something like:
+
+    ache
+    ...
+    chafed
+    
+To find all words that begin with a specific prefix:
+
+    $ scrabbler --prefix fi
+    fix
+    fixed
+    ...
+    fiz
+    fizzy
+    
+To find all words with a specific suffix:
+
+    $ scrabbler --suffix o
+    aero
+    ...
+    zydeco
+    
+
+# Solution
+
 - It is written in java. 
 - The java version in my mac is "1.8.0_60".
 - To run the code, put the code file and word.txt in the same directory. 
